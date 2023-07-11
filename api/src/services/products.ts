@@ -14,8 +14,22 @@ export const getProductList = async (): Promise<
   ProductDocument[] | undefined
 > => {
   try {
-   // sort({ title: 1 });
-      return Product.find();
+    // sort({ title: 1 });
+    return Product.find();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getProductByIdService = async (
+  productId: string
+): Promise<ProductDocument | undefined | null> => {
+  try {
+    const foundProduct = await Product.findById(productId);//pass the parameter
+    if (!foundProduct) {
+      console.log("can't find product");
+    }
+    return foundProduct;
   } catch (error) {
     console.log(error);
   }
