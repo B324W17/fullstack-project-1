@@ -1,12 +1,22 @@
 //product services
 
-import { ProductDocument } from "../models/Product";
+import Product, { ProductDocument } from "../models/Product";
 
 //communicate with the db
-const createProductService = async (
+export const createProductService = async (
   product: ProductDocument
 ): Promise<ProductDocument> => {
   return product.save();
 };
 
-export default { createProductService };
+//service 2 - get product list
+export const getProductList = async (): Promise<
+  ProductDocument[] | undefined
+> => {
+  try {
+   // sort({ title: 1 });
+      return Product.find();
+  } catch (error) {
+    console.log(error);
+  }
+};
