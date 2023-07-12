@@ -1,11 +1,26 @@
 import mongoose, { Document } from "mongoose";
 
-import { ProductDocument } from "./Product";
-import ProductSchema from "./Product";
+type ProductOrderDocument = Document & {
+  name: string;
+  price: number;
+  quantity: number;
+};
+
+const ProductOrderSchema = new mongoose.Schema({
+  name: {
+    type: String,
+  },
+  price: {
+    type: Number,
+  },
+  quantity: {
+    type: Number,
+  },
+});
 
 export type OrderDocument = Document & {
   createdAt: Date;
-  products: ProductDocument[];
+  products: ProductOrderDocument[];
   userId: string;
 };
 
@@ -16,7 +31,7 @@ const OrderSchema = new mongoose.Schema({
     default: Date.now,
   },
   //embedded syntax to product document
-  products: [ProductSchema],
+  products: [ProductOrderSchema],
   //reference syntax to user document
   userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" }, //from user document
 });

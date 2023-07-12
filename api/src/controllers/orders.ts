@@ -3,7 +3,7 @@ import { Request, Response, NextFunction } from "express";
 import { createOrderService } from "../services/orders";
 import Order from "../models/Order";
 
-const createOrder = async (
+export const createOrder = async (
   request: Request,
   response: Response,
   next: NextFunction
