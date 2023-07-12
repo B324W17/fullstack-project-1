@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 
-import { createOrderService } from "../services/orders";
+import { createOrderService, getOrderList } from "../services/orders";
 import Order from "../models/Order";
 
 export const createOrder = async (
@@ -16,4 +16,18 @@ export const createOrder = async (
     const order = createOrderService(newOrder);
     response.json(order);
   } catch (error) {}
+};
+
+export const getOrders = async (
+  request: Request,
+  response: Response,
+  next: NextFunction
+) => {
+  try {
+    const orderList = await getOrderList(); //pass to services
+    console.log(orderList, "product");
+    response.status(200).json(orderList); //return back a response
+  } catch (error) {
+    next(error);
+  }
 };
