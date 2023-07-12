@@ -13,11 +13,13 @@ export const createProduct = async (
   response: Response,
   next: NextFunction
 ) => {
+  //destructuring
+  const { title, price, image, description } = request.body;
   const productInformation = new Product({
-    title: request.body.title,
-    price: request.body.price,
-    image: request.body.image,
-    description: request.body.description,
+    title: title,
+    price: price,
+    image: image,
+    description: description,
   });
   try {
     const product = await createProductService(productInformation); //pass to services
