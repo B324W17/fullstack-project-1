@@ -1,6 +1,7 @@
+import { NotFoundError } from './../helpers/apiError';
 //user services
 
-import { UserDocument } from "../models/User";
+import User, { UserDocument } from "../models/User";
 
 //communicate with the db
 export const createUserService = async (
@@ -9,3 +10,10 @@ export const createUserService = async (
   return user.save();
 };
 
+export const findUserByEmail = async (userEmail: string) => {
+  const foundUser = await User.findOne({ email: userEmail });
+  if (!foundUser) {
+    throw new NotFoundError(`User ${userEmail} not found`);
+  }
+  return foundUser;
+}
