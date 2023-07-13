@@ -3,7 +3,7 @@ import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 
-import { createUserService, findUserByEmail } from "../services/users";
+import { createUserService, findUserByEmail, updateUser } from "../services/users";
 import User from "../models/User";
 
 export const createUser = async (
@@ -55,4 +55,16 @@ export const logInWithPassword = async (
   } catch (error) {
     next(error); //goes to api error handler
   }
+};
+
+//update
+export const updateUserController = async (
+  request: Request,
+  response: Response,
+  next: NextFunction
+) => {
+  const update = request.body;
+  const userId = request.params.id;
+  const updatedUser = await updateUser(userId, update);
+  response.json(updatedUser);
 };

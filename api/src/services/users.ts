@@ -1,5 +1,5 @@
-import { NotFoundError } from './../helpers/apiError';
 //user services
+import { NotFoundError } from "./../helpers/apiError";
 
 import User, { UserDocument } from "../models/User";
 
@@ -16,4 +16,15 @@ export const findUserByEmail = async (userEmail: string) => {
     throw new NotFoundError(`User ${userEmail} not found`);
   }
   return foundUser;
-}
+};
+
+export const updateUser = async (
+  userId: string,
+  update: Partial<UserDocument>
+): Promise<UserDocument> => {
+  const foundUser = await User.findByIdAndUpdate(userId, update, { new: true });
+  if (!foundUser) {
+    throw new NotFoundError(`user ${userId}not found`);
+  }
+  return foundUser;
+};
