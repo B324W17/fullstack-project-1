@@ -5,10 +5,10 @@ import { createUser, logInWithPassword, updateUserController } from "./../contro
 
 const router = Router();
 
-router.post("/", createUser);
-
 //login/register
 //use post - getting info from user
+router.post("/register", createUser);
+
 router.post("/login", logInWithPassword);
 
 //update user info
