@@ -2,9 +2,15 @@
 import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
+import bcrypt from "bcrypt";
 
-import { createUserService, findUserByEmail, updateUser } from "../services/users";
+import {
+  createUserService,
+  findUserByEmail,
+  updateUser,
+} from "../services/users";
 import User from "../models/User";
+import { UnauthorizedError } from "../helpers/apiError";
 
 export const createUser = async (
   request: Request,
@@ -12,12 +18,17 @@ export const createUser = async (
   next: NextFunction
 ) => {
   //destructuring
+  //hashed password
+  const { email, password } = request.body;
   try {
-    const { email, password } = request.body;
+    const salt = await bcrypt.genSalt(10); //salt rounds
+    const hashedPassword = await bcrypt.hash(password, salt);
+
     const userInformation = new User({
       email: email,
-      password: password,
+      password: hashedPassword,
     });
+
     const user = await createUserService(userInformation); //pass to services
     response.status(201).json(user); //return back a response
   } catch (error) {
@@ -36,10 +47,25 @@ export const logInWithPassword = async (
   try {
     //find user by email
     const userData = await findUserByEmail(request.body.email); //from database
+
     if (!userData) {
       response.status(403).json({ message: "no account yet" });
       return;
     }
+
+    //check for password
+    //can it only decrypt it with the password as key or else?
+    const hashedPassword = userData.password;
+    const isCorrectPassword = await bcrypt.compare(
+      request.body.password,
+      hashedPassword
+    );
+
+    //handle error
+    if (!isCorrectPassword) {
+      throw new UnauthorizedError();
+    }
+
     //response.json(userData);
     //token
     // sign -> payload, jwt secret(for better sec for the token), expire_time
@@ -51,6 +77,8 @@ export const logInWithPassword = async (
       JWT_SECRET,
       { expiresIn: "1h" }
     );
+
+    //correct password
     response.json({ userData, token });
   } catch (error) {
     next(error); //goes to api error handler
