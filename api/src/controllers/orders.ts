@@ -15,7 +15,9 @@ export const createOrder = async (
     });
     const order = createOrderService(newOrder);
     response.json(order);
-  } catch (error) {}
+  } catch (error) {
+    next(error);
+  }
 };
 
 export const getOrders = async (

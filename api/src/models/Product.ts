@@ -3,8 +3,8 @@ import mongoose, { Document } from "mongoose";
 export type ProductDocument = Document & {
   title: string;
   price: string;
-  image: string;
-  description: string;
+  image?: string;
+  description?: string;
 };
 
 const ProductSchema = new mongoose.Schema({
