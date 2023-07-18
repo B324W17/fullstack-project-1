@@ -13,12 +13,11 @@ export default function ProductList() {
   useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch]);
+  console.log(products);
   return (
     <div>
       {products.map((product) => (
-        <Grid >
-          <ProductItem product={product} />
-        </Grid>
+        <ProductItem key={product._id} product={product} />
       ))}
     </div>
   );
