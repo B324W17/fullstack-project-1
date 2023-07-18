@@ -13,3 +13,12 @@ export function fetchProducts() {
     dispatch(productActions.getProducts(productData)); //payload
   };
 }
+
+export function fetchProductDetail(productId: string) {
+    const productDetailUrl = `http://localhost:7000/products/${productId}`;
+    return async (dispatch: AppDispatch) => {
+      const response = await fetch(productDetailUrl);
+      const productDetail = await response.json();
+      dispatch(productActions.getProductDetail(productDetail));
+    };
+  }
