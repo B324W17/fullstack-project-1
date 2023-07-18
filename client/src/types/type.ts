@@ -5,3 +5,8 @@ export type Product = {
   image?: string;
   description?: string;
 };
+
+export type User = {
+  email: string;
+  password: string;
+};
