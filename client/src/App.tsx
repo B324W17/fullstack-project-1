@@ -6,6 +6,7 @@ import NavBar from "./components/navbar/NavBar";
 import ProductDetail from "./components/products/ProductDetail";
 import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
+import UserProfile from "./components/users/UserProfile";
 
 import "./App.css";
 
@@ -19,6 +20,7 @@ function App() {
         <Route path="/products/:id" element={<ProductDetail />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/profile" element={<UserProfile />} />
       </Routes>
     </div>
   );

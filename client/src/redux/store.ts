@@ -9,7 +9,7 @@ import userReducer from "./slices/user";
 const store = configureStore({
   reducer: {
     products: productReducer,//state manager
-    users: userReducer,
+    user: userReducer,
   },
 });
 

@@ -48,6 +48,7 @@ export const logInWithPassword = async (
     //find user by email
     const userData = await findUserByEmail(request.body.email); //from database
 
+    //if user email is not found
     if (!userData) {
       response.status(403).json({ message: "no account yet" });
       return;
@@ -79,6 +80,7 @@ export const logInWithPassword = async (
     );
 
     //correct password
+    //response to the front end
     response.json({ userData, token });
   } catch (error) {
     next(error); //goes to api error handler

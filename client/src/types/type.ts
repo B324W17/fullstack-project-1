@@ -7,6 +7,7 @@ export type Product = {
 };
 
 export type User = {
+  _id: string;
   email: string;
   password: string;
 };

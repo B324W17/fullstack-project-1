@@ -11,6 +11,7 @@ export const jwtStrategy = new JwtStrategy(
   {
     secretOrKey: JWT_SECRET,
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(), //receive token from front end
+    //will be used when we want to get token to update user info in the FE
   },
   //callback
   async (payload, done) => {
