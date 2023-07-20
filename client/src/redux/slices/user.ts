@@ -6,11 +6,13 @@ import { User } from "../../types/type";
 type UserState = {
   email: string;
   password: string;
+  userData: User | null;
 };
 
 const initialState: UserState = {
   email: "",
   password: "",
+  userData: null,
 };
 
 const userSlice = createSlice({
@@ -22,6 +24,9 @@ const userSlice = createSlice({
     },
     setPassword: (state, action: PayloadAction<string>) => {
       state.password = action.payload;
+    },
+    setUserData: (state, action: PayloadAction<User>) => {
+      state.userData = action.payload;
     },
   },
 });
