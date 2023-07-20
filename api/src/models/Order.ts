@@ -1,13 +1,13 @@
 import mongoose, { Document } from "mongoose";
 
 type ProductOrderDocument = Document & {
-  name: string;
+  title: string;
   price: number;
   quantity: number;
 };
 
 const ProductOrderSchema = new mongoose.Schema({
-  name: {
+  title: {
     type: String,
   },
   price: {
