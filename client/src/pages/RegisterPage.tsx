@@ -1,12 +1,13 @@
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
+import { Button, TextField } from "@mui/material";
+import axios from "axios";
+
 import { RootState } from "../redux/store";
 import { userActions } from "../redux/slices/user";
-import axios from "axios";
-import { Button, TextField } from "@mui/material";
 
 export default function RegisterPage() {
-  const { email, password } = useSelector((state: RootState) => state.users);
+  const { email, password } = useSelector((state: RootState) => state.user);
   const userInformation = { email, password };
   const dispatch = useDispatch();
 
@@ -18,12 +19,19 @@ export default function RegisterPage() {
     dispatch(userActions.setPassword(event.target.value));
   }
 
+  const navigate = useNavigate();
+
   function onClickHandler() {
     const endpoint = "http://localhost:7000/users/register";
     axios
       .post(endpoint, userInformation)
-      .then((response) => console.log(response))
-      .catch((error) => error);
+      .then((response) => {
+        if (response.status === 201) {
+          navigate("/login");
+        }
+        console.log(response.data);
+      })
+      .catch((error) => console.log(error));
   }
   return (
     <div>
