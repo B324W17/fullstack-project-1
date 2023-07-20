@@ -7,6 +7,7 @@ import ProductDetail from "./components/products/ProductDetail";
 import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
 import UserProfile from "./components/users/UserProfile";
+import CartList from "./components/cart/CartList";
 
 import "./App.css";
 
@@ -21,6 +22,7 @@ function App() {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/profile" element={<UserProfile />} />
+        <Route path="/cart" element={<CartList />} />
       </Routes>
     </div>
   );
