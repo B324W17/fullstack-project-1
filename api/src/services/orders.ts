@@ -9,7 +9,10 @@ export const createOrderService = async (
   return order.save();
 };
 
-export const getOrderList = async (): Promise<OrderDocument[]> => {
-    // sort({ title: 1 });
-    return Order.find();
-  };
+//get order by user id
+export const getOrderList = async (
+  userId: string
+): Promise<OrderDocument[]> => {
+  // sort({ title: 1 });
+  return Order.find({ userId: userId });
+};

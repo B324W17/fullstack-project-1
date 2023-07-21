@@ -9,10 +9,8 @@ export default function CartList() {
   const totalValue = useSelector((state: RootState) => state.cart.total);
   const userData = useSelector((state: RootState) => state.user.userData);
 
-  const userId = userData?._id;
-
   function handleCheckOut() {
-    const endpoint = "http://localhost:7000/orders";
+    const endpoint = `http://localhost:7000/orders/${userData?._id}`;
 
     const products = cartList.map((item) => ({
       title: item.product.title,
@@ -20,7 +18,7 @@ export default function CartList() {
       quantity: item.quantity,
     }));
     axios
-      .post(endpoint, { userId: userId, products: products })
+      .post(endpoint, { products: products })
       .then((response) => console.log(response.data))
       .catch((error) => error);
   }
