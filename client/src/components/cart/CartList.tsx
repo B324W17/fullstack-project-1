@@ -5,20 +5,24 @@ import { Button } from "@mui/material";
 import axios from "axios";
 
 export default function CartList() {
-  const cartList = useSelector((state: RootState) => state.cart.cartItems);
+  const cartList = useSelector((state: RootState) => state.cart.cartList);
   const totalValue = useSelector((state: RootState) => state.cart.total);
   const userData = useSelector((state: RootState) => state.user.userData);
 
   function handleCheckOut() {
     const endpoint = `http://localhost:7000/orders/${userData?._id}`;
-
-    const products = cartList.map((item) => ({
-      title: item.product.title,
-      price: item.product.price,
-      quantity: item.quantity,
-    }));
+    const token = localStorage.getItem("userToken");
     axios
-      .post(endpoint, { products: products })
+      .post(
+        endpoint,
+        { products: cartList },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
       .then((response) => console.log(response.data))
       .catch((error) => error);
   }
@@ -36,8 +40,8 @@ export default function CartList() {
         <h1>your cart list</h1>
         {cartList.map((cartItem) => (
           <CartItem
-            key={cartItem.product._id}
-            cartItem={cartItem.product}
+            key={cartItem._id}
+            cartItem={cartItem}
             cartItemQuantity={cartItem.quantity}
           />
         ))}

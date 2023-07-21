@@ -10,10 +10,10 @@ export const createOrder = async (
 ) => {
   try {
     const newOrder = new Order({
-      userId: request.params.userId,
+      userId: request.params.id,
       products: request.body.products, //from the front end
     });
-    const order = createOrderService(newOrder);
+    const order = await createOrderService(newOrder);
     response.json(order);
   } catch (error) {
     next(error);
