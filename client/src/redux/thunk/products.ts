@@ -4,7 +4,7 @@
 import { productActions } from "../slices/product";
 import { AppDispatch } from "../store";
 
-const productUrl = "http://localhost:7000/products";
+const productUrl = "https://backend-oqv7.onrender/products";
 
 export function fetchProducts() {
   return async (dispatch: AppDispatch) => {
@@ -15,10 +15,10 @@ export function fetchProducts() {
 }
 
 export function fetchProductDetail(productId: string) {
-    const productDetailUrl = `http://localhost:7000/products/${productId}`;
-    return async (dispatch: AppDispatch) => {
-      const response = await fetch(productDetailUrl);
-      const productDetail = await response.json();
-      dispatch(productActions.getProductDetail(productDetail));
-    };
-  }
+  const productDetailUrl = `https://backend-oqv7.onrender/products/${productId}`;
+  return async (dispatch: AppDispatch) => {
+    const response = await fetch(productDetailUrl);
+    const productDetail = await response.json();
+    dispatch(productActions.getProductDetail(productDetail));
+  };
+}

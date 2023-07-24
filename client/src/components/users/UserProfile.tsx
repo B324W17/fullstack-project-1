@@ -25,7 +25,7 @@ export default function UserProfile() {
   function onSubmitHandler() {
     const token = localStorage.getItem("userToken");
 
-    const endpoint = `http://localhost:7000/users/${userData?._id}`;
+    const endpoint = `https://backend-oqv7.onrender/users/${userData?._id}`;
 
     axios
       .put(endpoint, formData, {

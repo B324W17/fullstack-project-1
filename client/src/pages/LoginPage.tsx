@@ -19,7 +19,7 @@ export default function LoginPage() {
   const navigate = useNavigate();
 
   function loginHandler() {
-    const endpoint = "http://localhost:7000/users/login";
+    const endpoint = "https://backend-oqv7.onrender/users/login";
     axios
       .post(endpoint, { email, password })
       .then((response) => {

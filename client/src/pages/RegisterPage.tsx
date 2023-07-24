@@ -22,7 +22,7 @@ export default function RegisterPage() {
   const navigate = useNavigate();
 
   function onClickHandler() {
-    const endpoint = "http://localhost:7000/users/register";
+    const endpoint = "https://backend-oqv7.onrender/users/register";
     axios
       .post(endpoint, userInformation)
       .then((response) => {

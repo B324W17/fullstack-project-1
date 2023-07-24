@@ -10,7 +10,7 @@ export default function CartList() {
   const userData = useSelector((state: RootState) => state.user.userData);
 
   function handleCheckOut() {
-    const endpoint = `http://localhost:7000/orders/${userData?._id}`;
+    const endpoint = `https://backend-oqv7.onrender/orders/${userData?._id}`;
     const token = localStorage.getItem("userToken");
     axios
       .post(
