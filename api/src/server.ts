@@ -6,7 +6,7 @@ import app from "./app";
 
 dotenv.config();
 
-const port = 7001;
+const port = 7002;
 
 mongoose
   .connect(process.env.MONGODB_URI as string)
