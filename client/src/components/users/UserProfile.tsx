@@ -1,14 +1,16 @@
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../redux/store";
+import { AppDispatch, RootState } from "../../redux/store";
 import { Button, TextField } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { userActions } from "../../redux/slices/user";
+import { orderActions } from "../../redux/slices/order";
+import { useParams } from "react-router";
 
 export default function UserProfile() {
   const dispatch = useDispatch();
   const userData = useSelector((state: RootState) => state.user.userData);
-
+  const orderData = useSelector((state: RootState) => state.orders.orders);
   const [formData, setFormData] = useState({ email: userData?.email });
 
   const [readOnly, setReadOnly] = useState(true);
@@ -40,6 +42,16 @@ export default function UserProfile() {
       .catch((error) => error);
     setReadOnly(true);
   }
+
+  const dispatchOrderAction = useDispatch<AppDispatch>();
+  const userId = orderData?.userId;
+  function onOrdersHandler() {
+    useEffect(() => {
+      if (userId) {
+        dispatch(orderActions.getOrders(userId));
+      }
+    }, [dispatch, userId]);
+  }
   if (!userData) {
     return <div>no data</div>;
   }
@@ -57,6 +69,7 @@ export default function UserProfile() {
 
       <Button onClick={onEditHandler}>Edit</Button>
       <Button onClick={onSubmitHandler}>submit</Button>
+      <Button onClick={onOrdersHandler}>Orders</Button>
     </div>
   );
 }

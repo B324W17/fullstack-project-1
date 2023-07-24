@@ -26,7 +26,7 @@ export const getOrders = async (
   next: NextFunction
 ) => {
   try {
-    const userId = request.params.userId;
+    const userId = request.params.id;
     const orderList = await getOrderList(userId); //pass to services
     console.log(orderList, "product");
     response.status(200).json(orderList); //return back a response
