@@ -1,0 +1,67 @@
+.nav-bar {
+  display: flex;
+  justify-content: center;
+}
+.container {
+  width: 90%;
+  padding: 20px;
+}
+.upper-menu {
+  height: 20px;
+  display: flex;
+  flex-direction: row;
+  padding: 20px;
+}
+.logo {
+  width: 40%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  column-gap: 18px;
+  align-items: center;
+  color: rgb(41, 83, 2);
+  letter-spacing: 1.2rem;
+}
+.search {
+  width: 50%;
+  height: auto;
+  border-right: 1px solid rgb(182, 181, 181);
+}
+.search-field {
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.icons {
+  width: 30%;
+  height: auto;
+  display: flex;
+  column-gap: 20px;
+}
+.lower-menu {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+}
+.nav-links{
+  width: 40%;
+  display: flex;
+  justify-content: space-between;
+}
+.nav-links a{
+  text-decoration: none;
+  color: rgb(83, 82, 82);
+  transition: color 0.2s;
+  font-weight: 700;
+  font-size: 17px;
+}
+.nav-links a:hover{
+  color: rgb(13, 148, 13);
+}
+.nav-links a:active{
+  color: rgb(13, 148, 13);
+}
+.nav-links a:focus{
+  color: rgb(13, 148, 13);
+}
