@@ -14,12 +14,13 @@ export const createProduct = async (
   next: NextFunction
 ) => {
   //destructuring
-  const { title, price, image, description } = request.body;
+  const { title, price, description, category, image } = request.body;
   const productInformation = new Product({
     title: title,
     price: price,
-    image: image,
     description: description,
+    category: category,
+    image: image,
   });
   try {
     const product = await createProductService(productInformation); //pass to services

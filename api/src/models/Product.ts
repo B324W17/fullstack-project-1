@@ -3,8 +3,9 @@ import mongoose, { Document } from "mongoose";
 export type ProductDocument = Document & {
   title: string;
   price: string;
-  image?: string;
   description?: string;
+  category?: string;
+  image?: string;
 };
 
 const ProductSchema = new mongoose.Schema({
@@ -17,10 +18,13 @@ const ProductSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  image: {
+  description: {
     type: String,
   },
-  description: {
+  category: {
+    type: String,
+  },
+  image: {
     type: String,
   },
 });
