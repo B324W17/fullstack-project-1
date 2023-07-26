@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import HomePage from "./pages/HomePage";
 import ProductsPage from "./pages/ProductsPage";
@@ -15,19 +15,17 @@ import "./App.css";
 function App() {
   return (
     <div className="App">
-      <Router>
-        <NavBar />
-        <Routes>
-          <Route path="/home" element={<HomePage />} />
-          <Route path="/products" element={<ProductsPage />} />
-          <Route path="/products/:id" element={<ProductDetail />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/profile" element={<UserProfile />} />
-          <Route path="/cart" element={<CartList />} />
-          <Route path="/order" element={<OrderList />} />
-        </Routes>
-      </Router>
+      <NavBar />
+      <Routes>
+        <Route path="/home" element={<HomePage />} />
+        <Route path="/products" element={<ProductsPage />} />
+        <Route path="/products/:id" element={<ProductDetail />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/profile" element={<UserProfile />} />
+        <Route path="/cart" element={<CartList />} />
+        <Route path="/order" element={<OrderList />} />
+      </Routes>
     </div>
   );
 }
