@@ -1,0 +1,1 @@
+export const BASE_URL = process.env.NODE_ENV === 'production' ? 'https://backend-oqv7.onrender' : 'http://localhost:7000';

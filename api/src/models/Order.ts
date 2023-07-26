@@ -22,6 +22,7 @@ export type OrderDocument = Document & {
   createdAt: Date;
   products: ProductOrderDocument[];
   userId: string;
+  total: number;
 };
 
 const OrderSchema = new mongoose.Schema({

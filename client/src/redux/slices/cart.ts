@@ -1,10 +1,10 @@
 // cart slice
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-import { Product, ProductOrder } from "../../types/type";
+import { Product, ProductCart } from "../../types/type";
 
 type CartState = {
-  cartList: ProductOrder[];
+  cartList: ProductCart[];
   total: number;
 };
 

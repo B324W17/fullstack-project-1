@@ -12,13 +12,13 @@ export type User = {
   password: string;
 };
 
-export type ProductOrder = Product & {
+export type ProductCart = Product & {
   quantity: number;
 };
 
 export type Order = {
   _id: string;
   userId: string;
-  products: ProductOrder[];
+  products: ProductCart[];
   createdAt: string;
 };

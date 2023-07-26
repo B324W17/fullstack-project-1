@@ -10,11 +10,11 @@ export const createOrder = async (
 ) => {
   try {
     const newOrder = new Order({
-      userId: request.params.id,
+      userId: request.params.userId,
       products: request.body.products, //from the front end
     });
     const order = await createOrderService(newOrder);
-    response.json(order);
+    response.status(201).json(order);
   } catch (error) {
     next(error);
   }
@@ -26,7 +26,7 @@ export const getOrders = async (
   next: NextFunction
 ) => {
   try {
-    const userId = request.params.id;
+    const userId = request.params.userId;
     const orderList = await getOrderList(userId); //pass to services
     console.log(orderList, "product");
     response.status(200).json(orderList); //return back a response

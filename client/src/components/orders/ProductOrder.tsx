@@ -1,7 +1,7 @@
-import { ProductOrder } from "../../types/type";
+import { ProductCart } from "../../types/type";
 
 type ProductOrderProp = {
-  product: ProductOrder;
+  product: ProductCart;
 };
 export default function ProductOrderList({ product }: ProductOrderProp) {
   return (
