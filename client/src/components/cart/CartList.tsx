@@ -3,6 +3,7 @@ import { RootState } from "../../redux/store";
 import CartItem from "./CartItem";
 import { Button } from "@mui/material";
 import axios from "axios";
+import { BASE_URL } from "../../config/config";
 
 export default function CartList() {
   const cartList = useSelector((state: RootState) => state.cart.cartList);
@@ -10,7 +11,7 @@ export default function CartList() {
   const userData = useSelector((state: RootState) => state.user.userData);
 
   function handleCheckOut() {
-    const endpoint = `https://backend-oqv7.onrender/orders/${userData?._id}`;
+    const endpoint = `${BASE_URL}/orders/${userData?._id}`;
     const token = localStorage.getItem("userToken");
     axios
       .post(

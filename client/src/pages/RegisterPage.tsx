@@ -5,6 +5,7 @@ import axios from "axios";
 
 import { RootState } from "../redux/store";
 import { userActions } from "../redux/slices/user";
+import { BASE_URL } from "../config/config";
 
 export default function RegisterPage() {
   const { email, password } = useSelector((state: RootState) => state.user);
@@ -19,10 +20,10 @@ export default function RegisterPage() {
     dispatch(userActions.setPassword(event.target.value));
   }
 
-  const navigate = useNavigate();
+ const navigate = useNavigate();
 
   function onClickHandler() {
-    const endpoint = "https://backend-oqv7.onrender/users/register";
+    const endpoint = `${BASE_URL}/users/register`;
     axios
       .post(endpoint, userInformation)
       .then((response) => {

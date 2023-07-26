@@ -6,6 +6,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 import { userActions } from "../../redux/slices/user";
+import { BASE_URL } from "../../config/config";
 
 export default function UserProfile() {
   const dispatch = useDispatch();
@@ -25,7 +26,7 @@ export default function UserProfile() {
   function onSubmitHandler() {
     const token = localStorage.getItem("userToken");
 
-    const endpoint = `https://backend-oqv7.onrender/users/${userData?._id}`;
+    const endpoint = `${BASE_URL}/users/${userData?._id}`;
 
     axios
       .put(endpoint, formData, {

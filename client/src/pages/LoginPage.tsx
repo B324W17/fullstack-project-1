@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { userActions } from "../redux/slices/user";
 import { useNavigate } from "react-router";
+import { BASE_URL } from "../config/config";
 
 export default function LoginPage() {
   const { email, password } = useSelector((state: RootState) => state.user);
@@ -19,7 +20,7 @@ export default function LoginPage() {
   const navigate = useNavigate();
 
   function loginHandler() {
-    const endpoint = "https://backend-oqv7.onrender/users/login";
+    const endpoint = `${BASE_URL}/users/login`;
     axios
       .post(endpoint, { email, password })
       .then((response) => {
