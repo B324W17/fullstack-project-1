@@ -1,9 +1,19 @@
-import { Button } from "@mui/material";
+import {
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Typography,
+} from "@mui/material";
 import { Link } from "react-router-dom";
 import { Product } from "../../types/type";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { cartActions } from "../../redux/slices/cart";
+
+import "./products.css";
+import FavoriteButton from "../wishlist/FavoriteButton";
 
 type ProductItemProp = {
   product: Product;
@@ -19,12 +29,33 @@ export default function ProductItem({ product }: ProductItemProp) {
   }
   return (
     <div>
-      <p>{product.title}</p>
-      <p>{product.price}</p>
-      <Link to={`${product._id}`}>
-        <button>More detail</button>
-      </Link>
-      <Button onClick={() => addToCart(product)}>ADD TO CART</Button>
+      <Card sx={{ maxWidth: 345 }} elevation={0}>
+        <Link to={`${product._id}`}>
+          <CardMedia
+            sx={{ height: 300 }}
+            image={`${product.image}`}
+          ></CardMedia>
+        </Link>
+        <CardContent sx={{ padding: "7px" }}>
+          <Typography variant="h6" component="h3">
+            {product.title}
+          </Typography>
+        </CardContent>
+        <CardActions
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            padding: "0px",
+            marginBottom: "15px",
+          }}
+        >
+          <Typography variant="subtitle1" component="p">
+            Price: ${product.price}
+          </Typography>
+          <FavoriteButton product={product} />
+          <Button onClick={() => addToCart(product)}>ADD TO CART</Button>
+        </CardActions>
+      </Card>
     </div>
   );
 }
