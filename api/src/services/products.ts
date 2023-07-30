@@ -2,7 +2,6 @@
 
 import { NotFoundError } from "../helpers/apiError";
 import Product, { ProductDocument } from "../models/Product";
-import { Category, CategoryDocument } from "./../models/Product";
 
 //communicate with the db
 export const createProductService = async (
@@ -27,23 +26,11 @@ export const getProductByIdService = async (
   return foundProduct;
 };
 
-// service for category
-export const createCategoryService = async (
-  category: CategoryDocument
-): Promise<CategoryDocument> => {
-  return category.save();
-};
 
-//service 2 - get product list
-export const getCategories = async (): Promise<CategoryDocument[]> => {
+export const getCategories = async (): Promise<ProductDocument[]> => {
   // sort({ title: 1 });
-  return Category.find();
+  return Product.find();
 };
 
 //service for subcategory
 // service - create category
-export const createSubCategoryService = async (
-  subcategory: CategoryDocument
-): Promise<CategoryDocument> => {
-  return subcategory.save();
-};

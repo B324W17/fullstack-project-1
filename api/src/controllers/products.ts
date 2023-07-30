@@ -2,15 +2,12 @@
 import { NextFunction, Request, Response } from "express";
 
 import {
-  createCategoryService,
   createProductService,
-  createSubCategoryService,
   getCategories,
   getProductByIdService,
   getProductList,
 } from "../services/products";
-import Product, { SubCategory } from "../models/Product";
-import { Category } from "../models/Product";
+import Product from "../models/Product";
 
 export const createProduct = async (
   request: Request,
@@ -66,25 +63,6 @@ export const getProductById = async (
   }
 };
 
-// controller for category
-
-export const createCategory = async (
-  request: Request,
-  response: Response,
-  next: NextFunction
-) => {
-  const categoryInformation = new Category({
-    name: request.body.name,
-  });
-
-  try {
-    const category = await createCategoryService(categoryInformation);
-    response.status(201).json(category);
-  } catch (error) {
-    next(error);
-  }
-};
-
 export const getAllCategories = async (
   request: Request,
   response: Response,
@@ -100,20 +78,3 @@ export const getAllCategories = async (
 };
 
 //subcategory - controller
-
-export const createSubCategory = async (
-  request: Request,
-  response: Response,
-  next: NextFunction
-) => {
-  const subCategoryInformation = new SubCategory({
-    name: request.body.name,
-    parentCategory: request.body.parentCategory,
-  });
-  try {
-    const subcategory = await createSubCategoryService(subCategoryInformation);
-    response.status(201).json(subcategory);
-  } catch (error) {
-    next(error);
-  }
-};
