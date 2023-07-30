@@ -28,6 +28,10 @@ const userSlice = createSlice({
     setUserData: (state, action: PayloadAction<User>) => {
       state.userData = action.payload;
     },
+    clearUserData: (state) => {
+      state.email = "";
+      state.password = "";
+    },
   },
 });
 
