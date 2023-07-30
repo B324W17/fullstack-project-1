@@ -2,8 +2,10 @@ export type Product = {
   _id: string;
   title: string;
   price: number;
-  image?: string;
-  description?: string;
+  description: string;
+  category: string;
+  subcategory: string;
+  image: string;
 };
 
 export type User = {
@@ -21,4 +23,5 @@ export type Order = {
   userId: string;
   products: ProductCart[];
   createdAt: string;
+  total: number;
 };

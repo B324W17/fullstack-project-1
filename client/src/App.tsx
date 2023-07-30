@@ -17,7 +17,7 @@ function App() {
     <div className="App">
       <NavBar />
       <Routes>
-        <Route path="/home" element={<HomePage />} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/products" element={<ProductsPage />} />
         <Route path="/products/:id" element={<ProductDetail />} />
         <Route path="/register" element={<RegisterPage />} />
