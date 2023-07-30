@@ -14,7 +14,7 @@
   padding: 20px;
 }
 .logo {
-  width: 40%;
+  width: 30%;
   height: auto;
   display: flex;
   justify-content: center;
@@ -23,39 +23,24 @@
   color: rgb(41, 83, 2);
   letter-spacing: 1.2rem;
 }
-.search {
-  width: 50%;
-  height: auto;
-  border-right: 1px solid rgb(182, 181, 181);
-}
-.search-field {
-  width: 70%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 .icons {
-  width: 30%;
+  width: 25%;
   height: auto;
   display: flex;
   column-gap: 20px;
 }
-.lower-menu {
-  padding: 10px;
-  display: flex;
-  justify-content: center;
-}
 .nav-links {
-  width: 40%;
+  width: 50%;
   display: flex;
-  justify-content: space-between;
+  column-gap: 50px;
+  justify-content: left;
+  border-right: 1px solid rgb(182, 181, 181);
 }
-.nav-links a {
+.nav-links button {
   text-decoration: none;
-  color: rgb(83, 82, 82);
   transition: color 0.2s;
-  font-weight: 700;
-  font-size: 17px;
+  font-weight: 500;
+  font-size: 15px;
 }
 .nav-links a:hover {
   color: rgb(13, 148, 13);

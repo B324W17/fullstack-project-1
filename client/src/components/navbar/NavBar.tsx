@@ -1,22 +1,31 @@
 import { Link } from "react-router-dom";
-import React from "react";
+import React, { useState } from "react";
 import {
   AppBar,
   Badge,
   Box,
+  Button,
   Divider,
   IconButton,
   InputAdornment,
+  Menu,
+  MenuItem,
   TextField,
   Toolbar,
 } from "@mui/material";
-import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
+
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-import SearchIcon from "@mui/icons-material/Search";
+
 import useScrollTrigger from "@mui/material/useScrollTrigger";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 import "./navbar.css";
+import { useDispatch, useSelector } from "react-redux";
+import { productActions } from "../../redux/slices/product";
+import { RootState } from "../../redux/store";
+import Login from "../users/Register";
+import Register from "../users/Register";
 
 interface Props {
   children: React.ReactElement;
@@ -33,6 +42,17 @@ function ElevationScroll({ children }: Props) {
 }
 
 export default function NavBar() {
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const cart = useSelector((state: RootState) => state.cart.cartList);
+  const favorites = useSelector((state: RootState) => state.products.favorites);
   return (
     <Box sx={{ flexGrow: 1 }}>
       <ElevationScroll>
@@ -47,57 +67,62 @@ export default function NavBar() {
               />
               <h1>PURR</h1>
             </div>
-            <div className="search">
-              <div className="search-field">
-                <TextField
-                  fullWidth
-                  id="fullWidth"
-                  sx={{ color: "success" }}
-                  label="Search"
-                  placeholder="product name"
-                  type="search"
-                  variant="standard"
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <SearchIcon />
-                      </InputAdornment>
-                    ),
+            <div className="nav-links">
+              <Link to="/">
+                <Button color="success">Home</Button>
+              </Link>
+              <Link to="/products">
+                <Button
+                  color="success"
+                  id="basic-button"
+                  aria-controls={open ? "basic-menu" : undefined}
+                  aria-haspopup="true"
+                  aria-expanded={open ? "true" : undefined}
+                  onClick={handleClick}
+                  endIcon={<KeyboardArrowDownIcon />}
+                >
+                  Products
+                </Button>
+                <Menu
+                  id="basic-menu"
+                  anchorEl={anchorEl}
+                  open={open}
+                  onClose={handleClose}
+                  MenuListProps={{
+                    "aria-labelledby": "basic-button",
                   }}
-                  color="success"></TextField>
-              </div>
+                >
+                  <MenuItem onClick={handleClose}>Cat Essentials</MenuItem>
+                  <MenuItem onClick={handleClose}>Cat Toys</MenuItem>
+                  <MenuItem onClick={handleClose}>Cat Grooming & Care</MenuItem>
+                </Menu>
+              </Link>
+              <Link to="/login">
+                <Button color="success">Login</Button>
+              </Link>
+              <Link to="/profile">
+                <Button color="success">Profile</Button>
+              </Link>
+              <Link to="/cart">
+                <Button color="success">Cart</Button>
+              </Link>
             </div>
+
             <div className="icons">
               <IconButton size="large">
-                <Badge badgeContent={7} color="success">
+                <Badge badgeContent={favorites.length} color="success">
                   <FavoriteBorderOutlinedIcon />
                 </Badge>
               </IconButton>
               <IconButton size="large">
-                <Badge badgeContent={1} color="success">
+                <Badge badgeContent={cart.length} color="success">
                   <ShoppingCartOutlinedIcon />
                 </Badge>
               </IconButton>
-              <IconButton
-                size="large"
-                edge="end"
-                aria-label="account of current user"
-                aria-haspopup="true"
-              >
-                <PersonOutlineOutlinedIcon />
-              </IconButton>
+              <Register/>
             </div>
           </Toolbar>
-          <div className="lower-menu">
-            <div className="nav-links">
-              <Link to="/">Home</Link>
-              <Link to="/products">Products</Link>
-              <Link to="/register">Register</Link>
-              <Link to="/login">Login</Link>
-              <Link to="/profile">Profile</Link>
-              <Link to="/cart">Cart</Link>
-            </div>
-          </div>
+
           <Divider />
         </AppBar>
       </ElevationScroll>
