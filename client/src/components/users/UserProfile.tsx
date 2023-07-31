@@ -1,12 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../redux/store";
+import axios from "axios";
 import { Button, TextField } from "@mui/material";
 import { useState } from "react";
-import axios from "axios";
-import { Link } from "react-router-dom";
 
+import { RootState } from "../../redux/store";
 import { userActions } from "../../redux/slices/user";
 import { BASE_URL } from "../../config/config";
+import SideMenu from "../form/SideMenu";
+import "./users.css";
 
 export default function UserProfile() {
   const dispatch = useDispatch();
@@ -47,22 +48,24 @@ export default function UserProfile() {
     return <div>no data</div>;
   }
   return (
-    <div>
-      <h1>User Profile</h1>
-      <TextField
-        id="standard-basic"
-        label="Email"
-        variant="standard"
-        value={formData.email}
-        onChange={setUserFirstName}
-        InputProps={{ readOnly: readOnly }}
-      />
-
-      <Button onClick={onEditHandler}>Edit</Button>
-      <Button onClick={onSubmitHandler}>submit</Button>
-      <Link to="/order">
-        <Button>Orders</Button>
-      </Link>
+    <div className="profile">
+      <SideMenu />
+      <div className="main">
+        <h1>Account Setting</h1>
+        <h2>Account details</h2>
+        <TextField
+          id="outlined-basic"
+          label="Email"
+          variant="outlined"
+          value={formData.email}
+          onChange={setUserFirstName}
+          InputProps={{ readOnly: readOnly }}
+        />
+        <div className="buttons">
+          <Button onClick={onEditHandler}>Edit</Button>
+          <Button onClick={onSubmitHandler}>submit</Button>
+        </div>
+      </div>
     </div>
   );
 }
