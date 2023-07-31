@@ -1,0 +1,33 @@
+.carts {
+  margin: 190px;
+  background-color: yellow;
+  width: 80%;
+  display: flex;
+}
+.cart-list-container {
+  display: flex;
+  width: 50%;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.cart-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.btn-checkout {
+  background-color: red;
+}
+.cart-item-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.btns {
+  display: flex;
+}
+.cart-title{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}

@@ -4,6 +4,7 @@ import CartItem from "./CartItem";
 import { Button } from "@mui/material";
 import axios from "axios";
 import { BASE_URL } from "../../config/config";
+import "./carts.css";
 
 export default function CartList() {
   const cartList = useSelector((state: RootState) => state.cart.cartList);
@@ -37,19 +38,25 @@ export default function CartList() {
     );
   } else {
     return (
-      <div>
-        <h1>your cart list</h1>
-        {cartList.map((cartItem) => (
-          <CartItem
-            key={cartItem._id}
-            cartItem={cartItem}
-            cartItemQuantity={cartItem.quantity}
-          />
-        ))}
-        <p>Total: {totalValue}</p>
-        <Button variant="text" size="large" onClick={handleCheckOut}>
-          CHECK OUT
-        </Button>
+      <div className="carts">
+        <div className="cart-list-container">
+          <h1>your cart list</h1>
+          <div className="cart-list">
+            {cartList.map((cartItem) => (
+              <CartItem
+                key={cartItem._id}
+                cartItem={cartItem}
+                cartItemQuantity={cartItem.quantity}
+              />
+            ))}
+            <p>Total: {totalValue}</p>
+          </div>
+        </div>
+        <div className="btn-checkout">
+          <Button variant="text" size="large" onClick={handleCheckOut}>
+            CHECK OUT
+          </Button>
+        </div>
       </div>
     );
   }

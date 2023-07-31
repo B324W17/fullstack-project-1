@@ -1,7 +1,8 @@
-import { Button, Typography } from "@mui/material";
+import { Button, Divider, Typography } from "@mui/material";
 import { Product } from "../../types/type";
 import { useDispatch } from "react-redux";
 import { cartActions } from "../../redux/slices/cart";
+import "./carts.css";
 
 type CartItemProp = {
   cartItem: Product;
@@ -24,16 +25,24 @@ export default function CartItem({ cartItem, cartItemQuantity }: CartItemProp) {
     dispatch(cartActions.totalPrice());
   };
   return (
-    <div>
-      <p>{cartItem.title}</p>
-      <p>{cartItem.price}</p>
-      <Button variant="outlined" size="small" onClick={handleIncrement}>
-        +
-      </Button>
-      <Typography variant="body1">{cartItemQuantity}</Typography>
-      <Button variant="outlined" size="small" onClick={handleDecrement}>
-        -
-      </Button>
+    <div className="cart-item-container">
+      <div className="cart-image">
+        <img src={cartItem.image} alt="" width="100px" height="70px" />
+      </div>
+      <div className="cart-title">
+        <p>{cartItem.title}</p>
+        <p>{cartItem.price}</p>
+      </div>
+      <div className="btns">
+        <Button variant="outlined" size="small" onClick={handleIncrement}>
+          +
+        </Button>{" "}
+        <Typography variant="body1">{cartItemQuantity}</Typography>
+        <Button variant="outlined" size="small" onClick={handleDecrement}>
+          -
+        </Button>
+      </div>
+
       <Button
         variant="contained"
         size="small"
