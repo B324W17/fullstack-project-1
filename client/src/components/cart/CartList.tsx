@@ -1,10 +1,18 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import CartItem from "./CartItem";
-import { Button } from "@mui/material";
+import {
+  Button,
+  Paper,
+  Table,
+  TableBody,
+  TableContainer,
+  TableHead,
+} from "@mui/material";
 import axios from "axios";
 import { BASE_URL } from "../../config/config";
 import "./carts.css";
+import { Link } from "react-router-dom";
 
 export default function CartList() {
   const cartList = useSelector((state: RootState) => state.cart.cartList);
@@ -39,23 +47,41 @@ export default function CartList() {
   } else {
     return (
       <div className="carts">
-        <div className="cart-list-container">
-          <h1>your cart list</h1>
-          <div className="cart-list">
-            {cartList.map((cartItem) => (
-              <CartItem
-                key={cartItem._id}
-                cartItem={cartItem}
-                cartItemQuantity={cartItem.quantity}
-              />
-            ))}
-            <p>Total: {totalValue}</p>
-          </div>
+        <div className="title">
+          <h1>My Cart List</h1>
         </div>
-        <div className="btn-checkout">
-          <Button variant="text" size="large" onClick={handleCheckOut}>
-            CHECK OUT
-          </Button>
+        <div className="cart-list-container">
+          <TableContainer component={Paper} className="cart-list">
+            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+              <TableBody>
+                {cartList.map((cartItem) => (
+                  <CartItem
+                    key={cartItem._id}
+                    cartItem={cartItem}
+                    cartItemQuantity={cartItem.quantity}
+                  />
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+
+          <div className="btn-checkout">
+            <h2>Summary</h2>
+            <div>
+              <h4>Total: {totalValue.toFixed(2)}</h4>
+            </div>
+            <Button
+              variant="contained"
+              color="success"
+              size="large"
+              onClick={handleCheckOut}
+            >
+              CHECK OUT
+            </Button>
+            <Button variant="contained" component={Link} to="/products">
+              continue shopping
+            </Button>
+          </div>
         </div>
       </div>
     );

@@ -1,4 +1,10 @@
-import { Button, Divider, Typography } from "@mui/material";
+import {
+  Button,
+  Divider,
+  TableCell,
+  TableRow,
+  Typography,
+} from "@mui/material";
 import { Product } from "../../types/type";
 import { useDispatch } from "react-redux";
 import { cartActions } from "../../redux/slices/cart";
@@ -25,33 +31,39 @@ export default function CartItem({ cartItem, cartItemQuantity }: CartItemProp) {
     dispatch(cartActions.totalPrice());
   };
   return (
-    <div className="cart-item-container">
-      <div className="cart-image">
+    <TableRow
+      className="cart-item-container"
+      sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+    >
+      <TableCell className="cart-image" scope="row">
         <img src={cartItem.image} alt="" width="100px" height="70px" />
-      </div>
-      <div className="cart-title">
+      </TableCell>
+      <TableCell className="cart-title">
         <p>{cartItem.title}</p>
         <p>{cartItem.price}</p>
-      </div>
-      <div className="btns">
-        <Button variant="outlined" size="small" onClick={handleIncrement}>
-          +
-        </Button>{" "}
-        <Typography variant="body1">{cartItemQuantity}</Typography>
-        <Button variant="outlined" size="small" onClick={handleDecrement}>
-          -
+      </TableCell>
+      <TableCell>
+        <div className="btns">
+          <Button variant="outlined" size="small" onClick={handleIncrement}>
+            +
+          </Button>
+          <Typography variant="body1">{cartItemQuantity}</Typography>
+          <Button variant="outlined" size="small" onClick={handleDecrement}>
+            -
+          </Button>
+        </div>
+      </TableCell>
+      <TableCell>
+        <Button
+          variant="contained"
+          size="small"
+          color="error"
+          onClick={handleRemove}
+          sx={{ color: "white" }}
+        >
+          Remove
         </Button>
-      </div>
-
-      <Button
-        variant="contained"
-        size="small"
-        color="error"
-        onClick={handleRemove}
-        sx={{ color: "white" }}
-      >
-        Remove
-      </Button>
-    </div>
+      </TableCell>
+    </TableRow>
   );
 }
