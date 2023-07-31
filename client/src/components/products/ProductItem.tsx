@@ -37,8 +37,11 @@ export default function ProductItem({ product }: ProductItemProp) {
           ></CardMedia>
         </Link>
         <CardContent sx={{ padding: "7px" }}>
-          <Typography variant="h6" component="h3">
+          <Typography variant="h4" component="h3">
             {product.title}
+          </Typography>
+          <Typography variant="h6" component="h3">
+            {product.subcategory}
           </Typography>
         </CardContent>
         <CardActions

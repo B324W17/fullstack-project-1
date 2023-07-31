@@ -3,7 +3,7 @@ import { NextFunction, Request, Response } from "express";
 
 import {
   createProductService,
-  getCategories,
+  getProductByCategoryService,
   getProductByIdService,
   getProductList,
 } from "../services/products";
@@ -56,25 +56,24 @@ export const getProductById = async (
   try {
     const productId = request.params.id; //type string
     const product = await getProductByIdService(productId); //pass to services
-    console.log(product, "product");
     response.status(200).json(product); //return back a response
   } catch (error) {
     next(error);
   }
 };
 
-export const getAllCategories = async (
+export const getProductByCategory = async (
   request: Request,
   response: Response,
   next: NextFunction
 ) => {
   try {
-    const categoryList = await getCategories(); //pass to services
-    console.log(categoryList, "category");
-    response.status(200).json(categoryList); //return back a response
+    const category = request.params.category;//??
+    const productListByCategory = await getProductByCategoryService(category); //pass to services
+    response.status(200).json(productListByCategory); //return back a response
   } catch (error) {
     next(error);
   }
 };
 
-//subcategory - controller
+//subcategory - controller*/

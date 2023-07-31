@@ -26,11 +26,13 @@ export const getProductByIdService = async (
   return foundProduct;
 };
 
+export const getProductByCategoryService = async (
+  category: string
+): Promise<ProductDocument[]> => {
+  const products = await Product.find({ category });
 
-export const getCategories = async (): Promise<ProductDocument[]> => {
-  // sort({ title: 1 });
-  return Product.find();
+  if (products.length === 0) {
+    throw new NotFoundError(`${category} not found`);
+  }
+  return products;
 };
-
-//service for subcategory
-// service - create category

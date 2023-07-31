@@ -8,12 +8,14 @@ type ProductState = {
   products: Product[];
   productDetail: Product | null;
   favorites: Product[];
+  productsByCategory: Product[];
 };
 
 const initialState: ProductState = {
   products: [],
   productDetail: null,
   favorites: [],
+  productsByCategory: [],
 };
 
 const productSlice = createSlice({
@@ -24,7 +26,10 @@ const productSlice = createSlice({
       state.products = action.payload;
     },
     getProductDetail: (state, action: PayloadAction<Product>) => {
-      state.productDetail = action.payload;
+      state.productDetail = action.payload; //save to state
+    },
+    getProductByCategory: (state, action: PayloadAction<Product[]>) => {
+      state.productsByCategory = action.payload; //save to state
     },
     searchProduct: (state, action: PayloadAction<string>) => {
       const result = state.products.filter((item) =>

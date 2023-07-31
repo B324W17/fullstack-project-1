@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import React, { useState } from "react";
 import {
   AppBar,
+  Avatar,
   Badge,
   Box,
   Button,
@@ -12,11 +13,12 @@ import {
   MenuItem,
   TextField,
   Toolbar,
+  Tooltip,
 } from "@mui/material";
 
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-
+import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
@@ -51,8 +53,21 @@ export default function NavBar() {
     setAnchorEl(null);
   };
 
+  const [anchorElAccountMenu, setAnchorElAccountMenu] =
+    React.useState<null | HTMLElement>(null);
+  const openAccountMenu = Boolean(anchorElAccountMenu);
+  const handleClickAccountMenu = (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    setAnchorElAccountMenu(event.currentTarget);
+  };
+  const handleCloseAccountMenu = () => {
+    setAnchorElAccountMenu(null);
+  };
+
   const cart = useSelector((state: RootState) => state.cart.cartList);
   const favorites = useSelector((state: RootState) => state.products.favorites);
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <ElevationScroll>
@@ -71,55 +86,109 @@ export default function NavBar() {
               <Link to="/">
                 <Button color="success">Home</Button>
               </Link>
-              <Link to="/products">
-                <Button
-                  color="success"
-                  id="basic-button"
-                  aria-controls={open ? "basic-menu" : undefined}
-                  aria-haspopup="true"
-                  aria-expanded={open ? "true" : undefined}
-                  onClick={handleClick}
-                  endIcon={<KeyboardArrowDownIcon />}
-                >
-                  Products
-                </Button>
-                <Menu
-                  id="basic-menu"
-                  anchorEl={anchorEl}
-                  open={open}
-                  onClose={handleClose}
-                  MenuListProps={{
-                    "aria-labelledby": "basic-button",
-                  }}
-                >
-                  <MenuItem onClick={handleClose}>Cat Essentials</MenuItem>
-                  <MenuItem onClick={handleClose}>Cat Toys</MenuItem>
-                  <MenuItem onClick={handleClose}>Cat Grooming & Care</MenuItem>
-                </Menu>
+              <Link to={`/products/category/${"essentials"}`}>
+                <Button color="success">Essentials</Button>
               </Link>
-              <Link to="/login">
-                <Button color="success">Login</Button>
+              <Link to={`/products/category/${"toys"}`}>
+                <Button color="success">Toys</Button>
               </Link>
-              <Link to="/profile">
-                <Button color="success">Profile</Button>
+              <Link to={`/products/category/${"toys"}`}>
+                <Button color="success">Grooming & Care</Button>
               </Link>
               <Link to="/cart">
-                <Button color="success">Cart</Button>
+                <Button color="success">About us</Button>
+              </Link>
+              <Link to="/cart">
+                <Button color="success">Contact us</Button>
               </Link>
             </div>
 
             <div className="icons">
+              {" "}
               <IconButton size="large">
                 <Badge badgeContent={favorites.length} color="success">
                   <FavoriteBorderOutlinedIcon />
                 </Badge>
               </IconButton>
-              <IconButton size="large">
-                <Badge badgeContent={cart.length} color="success">
-                  <ShoppingCartOutlinedIcon />
-                </Badge>
-              </IconButton>
-              <Register/>
+              <Link to="/cart">
+                <IconButton size="large">
+                  <Badge badgeContent={cart.length} color="success">
+                    <ShoppingCartOutlinedIcon />
+                  </Badge>
+                </IconButton>
+              </Link>
+              <Tooltip title="Account settings">
+                <IconButton
+                  size="large"
+                  edge="end"
+                  aria-label="account of current user"
+                  aria-haspopup="true"
+                  aria-controls={openAccountMenu ? "account-menu" : undefined}
+                  aria-expanded={openAccountMenu ? "true" : undefined}
+                  onClick={handleClickAccountMenu}
+                >
+                  <PersonOutlineOutlinedIcon />
+                </IconButton>
+              </Tooltip>
+              <Menu
+                anchorEl={anchorElAccountMenu}
+                id="account-menu"
+                open={openAccountMenu}
+                onClose={handleCloseAccountMenu}
+                onClick={handleCloseAccountMenu}
+                PaperProps={{
+                  elevation: 0,
+                  sx: {
+                    overflow: "visible",
+                    filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
+                    mt: 1.5,
+                    "& .MuiAvatar-root": {
+                      width: 32,
+                      height: 32,
+                      ml: -0.5,
+                      mr: 1,
+                    },
+                    "&:before": {
+                      content: '""',
+                      display: "block",
+                      position: "absolute",
+                      top: 0,
+                      right: 14,
+                      width: 10,
+                      height: 10,
+                      bgcolor: "background.paper",
+                      transform: "translateY(-50%) rotate(45deg)",
+                      zIndex: 0,
+                    },
+                  },
+                }}
+                transformOrigin={{ horizontal: "right", vertical: "top" }}
+                anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+              >
+                <MenuItem
+                  component={Link}
+                  to="/register"
+                  onClick={handleCloseAccountMenu}
+                >
+                  <Avatar /> Register
+                </MenuItem>
+                <MenuItem
+                  component={Link}
+                  to="/login"
+                  onClick={handleCloseAccountMenu}
+                >
+                  <Avatar /> Login
+                </MenuItem>
+                <Divider></Divider>
+                <MenuItem
+                  component={Link}
+                  to="/profile"
+                  onClick={handleCloseAccountMenu}
+                >
+                  <Avatar />
+                  My Profile
+                </MenuItem>
+              </Menu>
             </div>
           </Toolbar>
 
