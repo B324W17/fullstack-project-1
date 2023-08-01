@@ -9,6 +9,7 @@ import { fetchProductDetail } from "../../redux/thunk/products";
 import FavoriteButton from "../wishlist/FavoriteButton";
 import { Product } from "../../types/type";
 import { cartActions } from "../../redux/slices/cart";
+import "./../../css/products.css";
 
 export default function ProductDetail() {
   const product = useSelector(

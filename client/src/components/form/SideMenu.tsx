@@ -3,7 +3,7 @@ import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 import { Button, Typography } from "@mui/material";
 
-import "./form.css";
+import "./../../css/form.css";
 
 export default function SideMenu() {
   return (

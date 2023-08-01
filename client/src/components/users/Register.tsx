@@ -1,25 +1,13 @@
-import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  IconButton,
-  TextField,
-  Typography,
-} from "@mui/material";
-
-import { useState } from "react";
+import { Button, TextField, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
 import { RootState } from "../../redux/store";
 import { userActions } from "../../redux/slices/user";
-import { Link, useNavigate } from "react-router-dom";
 import { BASE_URL } from "../../config/config";
-import axios from "axios";
-import Login from "./Login";
 
-import "./users.css";
+import "./../../css/users.css";
 
 export default function Register() {
   const { email, password } = useSelector((state: RootState) => state.user);

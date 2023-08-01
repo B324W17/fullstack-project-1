@@ -18,7 +18,7 @@ import AddShoppingCartOutlinedIcon from "@mui/icons-material/AddShoppingCartOutl
 import { Product } from "../../types/type";
 import { cartActions } from "../../redux/slices/cart";
 import FavoriteButton from "../wishlist/FavoriteButton";
-import "./products.css";
+import "./../../css/products.css";
 
 type ProductItemProp = {
   product: Product;

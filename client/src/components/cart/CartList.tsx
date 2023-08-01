@@ -20,19 +20,23 @@ import axios from "axios";
 import { RootState } from "../../redux/store";
 import { BASE_URL } from "../../config/config";
 import CartItem from "./CartItem";
-import "./carts.css";
+
+import "./../../css/carts.css";
 
 export default function CartList() {
   const cartList = useSelector((state: RootState) => state.cart.cartList);
   const totalValue = useSelector((state: RootState) => state.cart.total);
   const userData = useSelector((state: RootState) => state.user.userData);
+
   const [openAlert, setOpenAlert] = useState(false);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
 
   const handleSnackbarClose = () => {
     setSnackbarOpen(false);
   };
+
   const navigate = useNavigate();
+
   function handleCheckOut() {
     const endpoint = `${BASE_URL}/orders/${userData?._id}`;
     const token = localStorage.getItem("userToken");
@@ -60,6 +64,7 @@ export default function CartList() {
       .catch((error) => error);
     setSnackbarOpen(true);
   }
+
   function handleAlertClose() {
     setOpenAlert(false);
   }
@@ -103,7 +108,6 @@ export default function CartList() {
               </TableBody>
             </Table>
           </TableContainer>
-
           <div className="btn-checkout">
             <h2>Summary</h2>
             <div>

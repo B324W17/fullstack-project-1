@@ -7,7 +7,7 @@ import { AppDispatch, RootState } from "../../redux/store";
 import { fetchProductByCategory } from "../../redux/thunk/products";
 import SearchForm from "../form/SearchForm";
 import ProductItem from "./ProductItem";
-import "./products.css";
+import "./../../css/products.css";
 
 export default function ProductCategory() {
   const productByCategory = useSelector(

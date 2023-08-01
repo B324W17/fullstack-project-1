@@ -12,6 +12,7 @@ import Register from "./components/users/Register";
 import ProductCategory from "./components/products/ProductCategory";
 import Footer from "./components/footer/Footer";
 import Wishlist from "./components/wishlist/Wishlist";
+
 import "./App.css";
 
 function App() {

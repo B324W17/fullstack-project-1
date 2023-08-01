@@ -1,9 +1,9 @@
-import React from "react";
 import { Carousel } from "react-responsive-carousel";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import "./../css/homepage.css";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+
+import "./../css/homepage.css";
 
 export default function HomePage(): JSX.Element {
   return (

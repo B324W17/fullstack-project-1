@@ -8,7 +8,8 @@ import { RootState } from "../../redux/store";
 import { userActions } from "../../redux/slices/user";
 import { BASE_URL } from "../../config/config";
 import SideMenu from "../form/SideMenu";
-import "./users.css";
+
+import "./../../css/users.css";
 
 export default function UserProfile() {
   const dispatch = useDispatch();

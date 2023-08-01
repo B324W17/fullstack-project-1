@@ -1,14 +1,14 @@
 import {
   Button,
-  Divider,
   TableCell,
   TableRow,
   Typography,
 } from "@mui/material";
+
 import { Product } from "../../types/type";
 import { useDispatch } from "react-redux";
 import { cartActions } from "../../redux/slices/cart";
-import "./carts.css";
+import "./../../css/carts.css";
 
 type CartItemProp = {
   cartItem: Product;

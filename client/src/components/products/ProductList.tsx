@@ -6,7 +6,7 @@ import { AppDispatch, RootState } from "../../redux/store";
 import { fetchProducts } from "../../redux/thunk/products";
 import ProductItem from "./ProductItem";
 import SearchForm from "../form/SearchForm";
-import "./products.css";
+import "./../../css/products.css";
 
 export default function ProductList() {
   const products = useSelector((state: RootState) => state.products.products);

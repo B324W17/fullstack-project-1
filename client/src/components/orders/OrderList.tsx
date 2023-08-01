@@ -15,18 +15,20 @@ import { fetchOrderList } from "../../redux/thunk/orders";
 import { AppDispatch, RootState } from "../../redux/store";
 import ProductOrderList from "./ProductOrder";
 import SideMenu from "../form/SideMenu";
-import "./orders.css";
+import "./../../css/orders.css";
 
 export default function OrderList() {
   const userData = useSelector((state: RootState) => state.user.userData);
   const orderList = useSelector((state: RootState) => state.orders.orders);
+
   const dispatch = useDispatch<AppDispatch>();
+
   useEffect(() => {
     if (userData?._id) {
       dispatch(fetchOrderList(userData._id));
     }
   }, []);
-  console.log(orderList);
+
   return (
     <div className="orders-container">
       <SideMenu />
@@ -48,7 +50,6 @@ export default function OrderList() {
                     </caption>
                     <TableHead>
                       <TableRow>
-                       
                         <TableCell>Products</TableCell>
                         <TableCell>Amount</TableCell>
                         <TableCell>Items</TableCell>
