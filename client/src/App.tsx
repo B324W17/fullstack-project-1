@@ -11,6 +11,7 @@ import Login from "./components/users/Login";
 import Register from "./components/users/Register";
 import ProductCategory from "./components/products/ProductCategory";
 import Footer from "./components/footer/Footer";
+import Wishlist from "./components/wishlist/Wishlist";
 import "./App.css";
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
         <Route path="/profile" element={<UserProfile />} />
         <Route path="/cart" element={<CartList />} />
         <Route path="/order" element={<OrderList />} />
+        <Route path="/wishlist" element={<Wishlist />} />
       </Routes>
       <Footer />
     </div>
