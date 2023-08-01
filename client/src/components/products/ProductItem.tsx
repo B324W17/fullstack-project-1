@@ -56,7 +56,7 @@ export default function ProductItem({ product }: ProductItemProp) {
   return (
     <div>
       <Card sx={{ maxWidth: 345 }} elevation={1}>
-        <Link to={`${product._id}`}>
+        <Link to={`/products/${product._id}`}>
           <CardMedia
             sx={{ height: 200 }}
             image={`${product.image}`}
