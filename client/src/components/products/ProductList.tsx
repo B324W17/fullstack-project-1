@@ -24,21 +24,9 @@ export default function ProductList() {
   console.log(products);
   return (
     <div className="products">
-      <div role="presentation" onClick={handleClick}>
-        <Breadcrumbs aria-label="breadcrumb">
-          <Link underline="hover" color="inherit" href="/home">
-            Home
-          </Link>
-          <Link underline="hover" color="inherit" href="/products">
-            Products
-          </Link>
-          <Typography color="text.primary">All</Typography>
-        </Breadcrumbs>
-      </div>
       <div className="search-field">
         <SearchForm />
       </div>
-
       <Box
         sx={{
           display: "flex",

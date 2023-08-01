@@ -1,0 +1,15 @@
+.orders-container {
+  margin: 190px;
+  display: flex;
+}
+.main {
+  width: 30%;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 30px;
+}
+.main-table {
+  display: flex;
+  flex-direction: column;
+}

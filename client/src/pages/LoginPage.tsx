@@ -6,6 +6,8 @@ import { userActions } from "../redux/slices/user";
 import { useNavigate } from "react-router";
 import { BASE_URL } from "../config/config";
 
+import "./login.css";
+
 export default function LoginPage() {
   const { email, password } = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch();
@@ -40,7 +42,7 @@ export default function LoginPage() {
       .catch((error) => error);
   }
   return (
-    <div>
+    <div className="login">
       <h1>LoginPage</h1>
       <TextField
         id="standard-basic"

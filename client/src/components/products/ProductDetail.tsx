@@ -16,16 +16,15 @@ export default function ProductDetail() {
 
   useEffect(() => {
     if (productId) {
-      dispatch(fetchProductDetail(productId));
+      dispatch(fetchProductDetail(productId));//pass it to redux thunk
     }
   }, [dispatch, productId]);
-
   console.log(product);
   if (!product) {
-    return <div>no data</div>;
+    return <div className="details">no data</div>;
   }
   return (
-    <div>
+    <div className="details">
       product detail <p>{product.title}</p>
     </div>
   );

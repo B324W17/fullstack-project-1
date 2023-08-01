@@ -40,7 +40,7 @@ export default function CartItem({ cartItem, cartItemQuantity }: CartItemProp) {
       </TableCell>
       <TableCell className="cart-title">
         <p>{cartItem.title}</p>
-        <p>{cartItem.price}</p>
+        <p>{cartItem.price} &euro;</p>
       </TableCell>
       <TableCell>
         <div className="btns">
