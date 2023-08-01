@@ -18,6 +18,9 @@ app.use(passport.initialize());
 passport.use(jwtStrategy); //make it available for the whole app
 
 //routes
+app.get("/", (req, res) => {
+  res.send("Welcome to the server!"); // You can customize the response here
+});
 app.use("/products", productRouter);
 app.use("/users", userRouter);
 app.use("/orders", orderRouter);
