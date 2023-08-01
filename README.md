@@ -1,5 +1,10 @@
 # Fullstack Project
 
+# Deployment
+
+frontend: https://frontend-yl3a.onrender.com/
+Backend: https://backend-oqv7.onrender.com/
+
 ## How to run project
 
 ### Front-end
