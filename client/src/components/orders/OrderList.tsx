@@ -8,6 +8,7 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  Typography,
 } from "@mui/material";
 
 import { fetchOrderList } from "../../redux/thunk/orders";
@@ -25,35 +26,38 @@ export default function OrderList() {
       dispatch(fetchOrderList(userData._id));
     }
   }, []);
-  
-  if (!userData) {
-    <div>no data</div>;
-  }
+  console.log(orderList);
   return (
     <div className="orders-container">
       <SideMenu />
       <div className="main">
         <h1>Your Order List</h1>
-        {orderList.length === 0
+        {!userData
           ? "Please login or register to view your order list"
+          : orderList.length === 0
+          ? "You have no orders"
           : orderList.map((item) => (
               <div key={item._id} className="main-table">
-                <div>{new Date(item.createdAt).toLocaleDateString()}</div>
+                <div>Date: {new Date(item.createdAt).toLocaleDateString()}</div>
                 <TableContainer component={Paper}>
                   <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                    <caption>
+                      <Typography component="h4">
+                        Total: {item.total.toFixed(2)} &euro;
+                      </Typography>
+                    </caption>
                     <TableHead>
                       <TableRow>
-                        <TableCell align="right"></TableCell>
+                       
                         <TableCell>Products</TableCell>
                         <TableCell>Amount</TableCell>
                         <TableCell>Items</TableCell>
-                        <TableCell>Total</TableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>
                       {item.products.map((product) => (
                         <ProductOrderList key={product._id} product={product} />
-                      ))}
+                      ))} 
                     </TableBody>
                   </Table>
                 </TableContainer>

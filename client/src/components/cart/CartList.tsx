@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Button,
   Dialog,
@@ -32,7 +32,7 @@ export default function CartList() {
   const handleSnackbarClose = () => {
     setSnackbarOpen(false);
   };
-
+  const navigate = useNavigate();
   function handleCheckOut() {
     const endpoint = `${BASE_URL}/orders/${userData?._id}`;
     const token = localStorage.getItem("userToken");
@@ -51,14 +51,19 @@ export default function CartList() {
           },
         }
       )
-      .then((response) => console.log(response.data))
+      .then((response) => {
+        if (response.status === 201) {
+          navigate("/order");
+        }
+        console.log(response.data);
+      })
       .catch((error) => error);
     setSnackbarOpen(true);
   }
   function handleAlertClose() {
     setOpenAlert(false);
   }
-  
+
   if (cartList.length === 0) {
     return (
       <div className="carts">
@@ -112,7 +117,7 @@ export default function CartList() {
             >
               CHECK OUT
             </Button>
-            <Button variant="contained" component={Link} to="/products">
+            <Button variant="outlined" component={Link} to="/products">
               continue shopping
             </Button>
           </div>

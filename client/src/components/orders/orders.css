@@ -1,9 +1,9 @@
 .orders-container {
-  margin: 190px;
+  margin: 150px;
   display: flex;
 }
 .main {
-  width: 30%;
+  width: 60%;
   display: flex;
   align-items: flex-start;
   gap: 20px;

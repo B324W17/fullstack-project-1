@@ -4,6 +4,8 @@
   justify-content: center;
   align-items: flex-start;
   padding: 50px;
+  background-color: rgb(241, 252, 239);
+
   border-right: 1px solid rgb(182, 181, 181);
 }
 .side-menu {
@@ -12,6 +14,7 @@
   align-items: flex-start;
   gap: 15px;
 }
+
 .btn {
   display: flex;
   gap: 5px;

@@ -55,7 +55,8 @@ export default function UserProfile() {
             sx={{
               display: "flex",
               gap: "10px",
-              width: "100%",
+              width: "50%",
+              alignItems:"center",
               justifyContent: "center",
             }}
           >
