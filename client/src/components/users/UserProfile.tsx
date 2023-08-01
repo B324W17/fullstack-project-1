@@ -1,7 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
-import { Button, TextField } from "@mui/material";
 import { useState } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import { Box, Button, TextField } from "@mui/material";
 
 import { RootState } from "../../redux/store";
 import { userActions } from "../../redux/slices/user";
@@ -45,7 +46,39 @@ export default function UserProfile() {
   }
 
   if (!userData) {
-    return <div>no data</div>;
+    return (
+      <div className="profile">
+        <SideMenu />
+        <div className="main">
+          <h1>You don't have an account yet!</h1>
+          <Box
+            sx={{
+              display: "flex",
+              gap: "10px",
+              width: "100%",
+              justifyContent: "center",
+            }}
+          >
+            <Button
+              variant="contained"
+              component={Link}
+              to="/login"
+              color="success"
+            >
+              login
+            </Button>
+            <Button
+              variant="contained"
+              component={Link}
+              to="/register"
+              color="success"
+            >
+              register
+            </Button>
+          </Box>
+        </div>
+      </div>
+    );
   }
   return (
     <div className="profile">
