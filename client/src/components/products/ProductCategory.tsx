@@ -1,14 +1,14 @@
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { Box, Grid } from "@mui/material";
 
 import { AppDispatch, RootState } from "../../redux/store";
-import { useParams } from "react-router-dom";
-import { useEffect } from "react";
 import { fetchProductByCategory } from "../../redux/thunk/products";
 import SearchForm from "../form/SearchForm";
-
-import "./products.css";
-import { Box, Grid } from "@mui/material";
 import ProductItem from "./ProductItem";
+import "./products.css";
+
 export default function ProductCategory() {
   const productByCategory = useSelector(
     (state: RootState) => state.products.productsByCategory
@@ -24,6 +24,7 @@ export default function ProductCategory() {
       dispatch(fetchProductByCategory(productCategory));
     }
   }, [dispatch, productCategory]);
+
   return (
     <div className="products">
       <div className="search-field">

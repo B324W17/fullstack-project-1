@@ -36,6 +36,11 @@ const productSlice = createSlice({
         item.title.toLowerCase().includes(action.payload.toLowerCase())
       );
       state.products = result;
+      //search in the categories
+      const result2 = state.productsByCategory.filter((item) =>
+        item.title.toLowerCase().includes(action.payload.toLowerCase())
+      );
+      state.productsByCategory = result2;
     },
     addToFavorites: (state, action: PayloadAction<Product>) => {
       const favorite = action.payload;

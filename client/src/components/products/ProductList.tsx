@@ -1,18 +1,12 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Box, Grid } from "@mui/material";
 
 import { AppDispatch, RootState } from "../../redux/store";
 import { fetchProducts } from "../../redux/thunk/products";
 import ProductItem from "./ProductItem";
-import { Box, Breadcrumbs, Grid, Link, Typography } from "@mui/material";
-
-import "./products.css";
 import SearchForm from "../form/SearchForm";
-
-function handleClick(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
-  event.preventDefault();
-  console.info("You clicked a breadcrumb.");
-}
+import "./products.css";
 
 export default function ProductList() {
   const products = useSelector((state: RootState) => state.products.products);
@@ -21,7 +15,7 @@ export default function ProductList() {
   useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch]);
-  console.log(products);
+
   return (
     <div className="products">
       <div className="search-field">
