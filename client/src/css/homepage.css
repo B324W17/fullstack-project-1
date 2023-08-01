@@ -16,17 +16,15 @@
 .carousel-button {
   position: absolute;
   top: 45%; /* Adjust the top position as needed */
-  left: 19%;
+  left: 18.7%;
   transform: translate(-50%, -50%);
-  z-index: 2; /* Make sure the button is above the carousel */
-  padding: 10px 20px;
+  z-index: 10; /* Make sure the button is above the carousel */
   border-radius: 5px;
   font-size: 16px;
-  cursor: pointer;
 }
 .carousel-image {
   max-width: 85%;
-  height: 500px;
+  height: 600px;
   margin: 0 auto;
   border-radius: 10px;
   position: relative;

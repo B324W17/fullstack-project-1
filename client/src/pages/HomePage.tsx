@@ -11,11 +11,15 @@ export default function HomePage(): JSX.Element {
       <div className="carousel-text">
         <h1>Welcome to our Purr!</h1>
       </div>
-      <Link to="/products">
-        <Button variant="contained" color="success" className="carousel-button">
-          Go to shop
-        </Button>
-      </Link>
+      <div className="carousel-button">
+        {" "}
+        <Link to="/products">
+          <Button variant="contained" color="success">
+            Go to shop
+          </Button>
+        </Link>
+      </div>
+
       <Carousel
         showArrows={false}
         infiniteLoop={true}
