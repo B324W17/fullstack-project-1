@@ -22,10 +22,10 @@ export default function Wishlist() {
     return (
       <div className="favs">
         <div className="title">
-          <h1>My Cart List</h1>
+          <h1>My Wish List</h1>
         </div>
         <div className="wish-list-container">
-          <p>No items in the cart.</p>
+          <p>No favorite items yet.</p>
         </div>
         <Button
           sx={{ width: "15%" }}
