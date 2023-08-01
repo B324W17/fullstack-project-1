@@ -7,11 +7,11 @@ import ProductDetail from "./components/products/ProductDetail";
 import UserProfile from "./components/users/UserProfile";
 import CartList from "./components/cart/CartList";
 import OrderList from "./components/orders/OrderList";
-
-import "./App.css";
 import Login from "./components/users/Login";
 import Register from "./components/users/Register";
 import ProductCategory from "./components/products/ProductCategory";
+import Footer from "./components/footer/Footer";
+import "./App.css";
 
 function App() {
   return (
@@ -20,7 +20,10 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/products" element={<ProductsPage />} />
-        <Route path="/products/category/:category" element={<ProductCategory />} />
+        <Route
+          path="/products/category/:category"
+          element={<ProductCategory />}
+        />
         <Route path="/products/:id" element={<ProductDetail />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
@@ -28,6 +31,7 @@ function App() {
         <Route path="/cart" element={<CartList />} />
         <Route path="/order" element={<OrderList />} />
       </Routes>
+      <Footer />
     </div>
   );
 }
